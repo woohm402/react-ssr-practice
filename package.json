@@ -1,0 +1,10 @@
+{
+  "name": "react-ssr-practice",
+  "version": "1.0.0",
+  "description": "ssr only with react & expressjs",
+  "main": "index.js",
+  "repository": "https://github.com/woohm402/react-ssr-practice",
+  "author": "woohm402 <woohm404@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
