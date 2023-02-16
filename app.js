@@ -1,11 +1,25 @@
-import { createElement, useReducer } from "react";
+const isServer = typeof window === "undefined";
+const React = isServer ? require("react") : window.React;
+const ReactDOM = isServer ? require("react-dom/client") : window.ReactDOM;
 
-export const App = () => {
-  const [count, increment] = useReducer((c) => c + 1, 0);
+const e = React.createElement;
 
-  return createElement("div", { style: { color: "blue" } }, [
-    "Hello World!",
-    createElement("br"),
-    createElement("button", { onClick: increment }, count),
-  ]);
+const App = () => {
+  const [count, increment] = React.useReducer((c) => c + 1, 0);
+
+  return e(
+    "section",
+    undefined,
+    e("p", undefined, "Hello World!"),
+    e("br"),
+    e("button", { onClick: increment }, count)
+  );
 };
+
+if (!isServer) {
+  ReactDOM.hydrateRoot(document.getElementById("root"), e(App));
+}
+
+if (isServer) {
+  module.exports = { App };
+}
